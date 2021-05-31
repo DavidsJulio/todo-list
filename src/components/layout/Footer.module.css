@@ -1,0 +1,16 @@
+.footer {
+  padding: 10px;
+  background-color: #606263;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.links {
+  display: flex;
+}
+
+.links a {
+  width: 30px;
+  margin: 10px;
+}

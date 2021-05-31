@@ -1,21 +1,20 @@
-import { Route, Switch } from "react-router";
-import MainHeader from "./components/layout/MainHeader";
+import { Route } from "react-router";
 import Login from "./pages/Login";
-import TodoList from "./pages/Home";
+import StartPage from "./pages/StartPage";
+import Layout from "./components/Layout/Layout";
 
 function App() {
   return (
-    <div>
-      <MainHeader />
+    <Layout>
       <main>
         <Route path="/" exact>
-          <TodoList />
+          <StartPage />
         </Route>
         <Route path="/login">
           <Login />
         </Route>
       </main>
-    </div>
+    </Layout>
   );
 }
 
