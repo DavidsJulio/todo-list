@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "../UI/Card";
 import classes from "./AuthForm.module.css";
 
 function AuthForm() {
+  const [isLogin, setIsLogin] = useState(true);
+
   const changeFormHandler = () => {
-    console.log("Hi");
+    setIsLogin((prevState) => !prevState);
   };
 
   const submitHandler = (event) => {
@@ -14,7 +16,7 @@ function AuthForm() {
   return (
     <Card>
       <section className={classes.auth}>
-        <h1>Sign In to Start!</h1>
+        <h1>{`Sign ${isLogin ? "In" : "Up"} to Start!`}</h1>
         <form onSubmit={submitHandler}>
           <div className={classes.control}>
             <label htmlFor="email">Email:</label>
@@ -25,7 +27,9 @@ function AuthForm() {
             <input type="password" id="password" required />
           </div>
           <div className={classes.btn}>
-            <button type="button">Sign In</button>
+            <button type="button">
+              {isLogin ? "Sign In" : "Create Account"}
+            </button>
             <p onClick={changeFormHandler}>
               New to Todo list? Click here to Sign Up
             </p>
