@@ -1,0 +1,66 @@
+.auth {
+  padding: 2rem;
+  text-align: center;
+}
+
+.auth h1 {
+  font-size: 3em;
+}
+
+.control {
+  margin-bottom: 0.5rem;
+}
+
+.control label {
+  display: inline-block;
+  color: #606263;
+  width: 10%;
+}
+
+.control input {
+  font: inherit;
+  border-radius: 10px;
+  border: 1px solid #606263;
+  padding: 0.5rem;
+  width: 50%;
+}
+
+.btn {
+  margin: 1.2rem;
+}
+
+.btn button {
+  cursor: pointer;
+  font: inherit;
+  color: white;
+  background-color: #606263;
+  border: 1px solid #606263;
+  border-radius: 5px;
+  padding: 0.5rem 2.5rem;
+}
+
+.btn button:hover {
+  background-color: #84888a;
+  border-color: #84888a;
+}
+
+.btn p {
+  cursor: pointer;
+}
+
+.btn p:hover {
+  color: #606263;
+}
+
+@media only screen and (max-width: 1056px) {
+  .control {
+    align-content: center;
+    padding: 10px;
+  }
+  .control label {
+    width: 20%;
+  }
+  .control input {
+    width: 80%;
+  }
+}
