@@ -30,9 +30,11 @@ function MainHeader() {
           )}
           {isLoggedIn && (
             <li>
-              <button className={classes.button} onClick={logoutHandler}>
-                Logout
-              </button>
+              <div className={classes.btn}>
+                <button className={classes.btn} onClick={logoutHandler}>
+                  Logout
+                </button>
+              </div>
             </li>
           )}
         </ul>

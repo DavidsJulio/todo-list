@@ -37,3 +37,18 @@
   padding-bottom: 0.3rem;
   border-bottom: 3px solid #95bcf0;
 }
+
+.btn button {
+  cursor: pointer;
+  font: inherit;
+  color: white;
+  background-color: #95bcf0;
+  border: 1px solid #95bcf0;
+  border-radius: 5px;
+  padding: 0.5rem 2.5rem;
+}
+
+.btn button:hover {
+  background-color: #80a2cf;
+  border-color: #80a2cf;
+}
