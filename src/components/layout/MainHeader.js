@@ -8,6 +8,10 @@ function MainHeader() {
 
   const isLoggedIn = authContext.isLoggedIn;
 
+  const logoutHandler = () => {
+    authContext.logout();
+  };
+
   return (
     <header className={classes.header}>
       <nav>
@@ -26,7 +30,9 @@ function MainHeader() {
           )}
           {isLoggedIn && (
             <li>
-              <button className={classes.button}>Logout</button>
+              <button className={classes.button} onClick={logoutHandler}>
+                Logout
+              </button>
             </li>
           )}
         </ul>
