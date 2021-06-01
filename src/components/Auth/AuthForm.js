@@ -4,6 +4,7 @@ import classes from "./AuthForm.module.css";
 
 function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -19,31 +20,50 @@ function AuthForm() {
 
     //TODO: validation
 
+    setIsLoading(true);
+    let url;
     if (isLogin) {
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAv7kAHqg-FzvkEqVq9MAhh1HYAprIi3Ic";
     } else {
-      fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAv7kAHqg-FzvkEqVq9MAhh1HYAprIi3Ic",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            email: enteredEmail,
-            password: enteredPassword,
-            returnSecureToken: true,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      ).then((res) => {
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAv7kAHqg-FzvkEqVq9MAhh1HYAprIi3Ic";
+    }
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enteredPassword,
+        returnSecureToken: true,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        setIsLoading(false);
         if (res.ok) {
+          return res.json();
         } else {
           return res.json().then((data) => {
-            //Show error modal
-            console.log(data);
+            // Show error modal
+            let errorMessage = "Authentication Failed";
+            // if (data && data.error && data.error.message) {
+            //   errorMessage = data.error.message;
+            // }
+
+            throw new Error(errorMessage);
           });
         }
+      })
+      .then((data) => {
+        //Success
+        console.log(data);
+      })
+      .catch((err) => {
+        alert(err.message);
       });
-    }
   };
 
   return (
@@ -65,9 +85,12 @@ function AuthForm() {
             />
           </div>
           <div className={classes.btn}>
-            <button type="submit">
-              {isLogin ? "Sign In" : "Create Account"}
-            </button>
+            {!isLoading && (
+              <button type="submit">
+                {isLogin ? "Sign In" : "Create Account"}
+              </button>
+            )}
+            {isLoading && <p>Loading..</p>}
             <p onClick={changeFormHandler}>
               {isLogin
                 ? "New to Todo list? Click here to Sign Up"
