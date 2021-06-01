@@ -6,16 +6,14 @@ import Layout from "./components/Layout/Layout";
 function App() {
   return (
     <Layout>
-      <main>
-        <Switch>
-          <Route path="/" exact>
-            <StartPage />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-        </Switch>
-      </main>
+      <Switch>
+        <Route path="/" exact>
+          <StartPage />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+      </Switch>
     </Layout>
   );
 }
