@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import StartPage from "./pages/StartPage";
 import Layout from "./components/Layout/Layout";
 import AuthContext from "./store/auth-context";
+import TodoList from "./components/Todo/TodoList";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -12,7 +13,7 @@ function App() {
     <Layout>
       <Switch>
         <Route path="/" exact>
-          {authCtx.isLoggedIn && <h1>PAGE TO DO</h1>}
+          {authCtx.isLoggedIn && <TodoList />}
           {!authCtx.isLoggedIn && <StartPage />}
         </Route>
         {!authCtx.isLoggedIn && (

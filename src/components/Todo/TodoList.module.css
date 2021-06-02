@@ -1,0 +1,33 @@
+.add {
+  text-align: center;
+}
+
+.add input {
+  font: inherit;
+  border-radius: 10px;
+  border: 1px solid #606263;
+  padding: 0.5rem;
+  margin-right: 1.5rem;
+}
+
+.add button {
+  cursor: pointer;
+  font: inherit;
+  color: white;
+  background-color: #606263;
+  border: 1px solid #606263;
+  border-radius: 5px;
+  padding: 0.5rem 2.5rem;
+}
+
+.add button:hover {
+  background-color: #84888a;
+  border-color: #84888a;
+}
+
+.grid {
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: auto auto auto;
+  margin: 3em 0;
+}
