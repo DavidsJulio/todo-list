@@ -1,3 +1,11 @@
+.ongoing {
+  border-right: 2px solid #606263;
+}
+
 .list {
-  border-right: 2px solid black;
+  cursor: pointer;
+}
+
+.list li {
+  margin-bottom: 0.8rem;
 }
