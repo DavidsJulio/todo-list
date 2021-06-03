@@ -1,3 +1,7 @@
+.container {
+  margin-left: 1em;
+}
+
 .add {
   text-align: center;
 }
@@ -28,6 +32,6 @@
 .grid {
   display: grid;
   grid-gap: 40px;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   margin: 2em 0;
 }
