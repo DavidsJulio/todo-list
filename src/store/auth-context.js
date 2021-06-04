@@ -5,6 +5,7 @@ let logoutTimer;
 const AuthContext = React.createContext({
   token: "",
   isLoggedIn: false,
+  userId: "",
   login: (token) => {},
   logout: () => {},
 });
@@ -21,7 +22,7 @@ const calculateTime = (experationTime) => {
 const retriveStoredToken = () => {
   const storedToken = localStorage.getItem("token");
   const storedTime = localStorage.getItem("experationTime");
-
+  const storedUserId = localStorage.getItem("userId");
   const remainingTime = calculateTime(storedTime);
 
   if (remainingTime <= 60000) {
@@ -33,21 +34,26 @@ const retriveStoredToken = () => {
   return {
     token: storedToken,
     duration: remainingTime,
+    userId: storedUserId,
   };
 };
 
 export const AuthContextProvider = (props) => {
   const tokenData = retriveStoredToken();
   let initialToken;
+  let initialUserId;
   if (tokenData) {
     initialToken = tokenData.token;
+    initialUserId = tokenData.userId;
   }
   const [token, setToken] = useState(initialToken);
-
+  const [userId, setUserId] = useState(initialUserId);
   const userIsLoggedIn = !!token;
 
   const logoutHandler = useCallback(() => {
     setToken(null);
+    setUserId(null);
+    localStorage.removeItem("userId");
     localStorage.removeItem("token");
     localStorage.removeItem("experationTime");
     if (logoutTimer) {
@@ -55,10 +61,12 @@ export const AuthContextProvider = (props) => {
     }
   }, []);
 
-  const loginHandler = (token, experationTime) => {
+  const loginHandler = (token, experationTime, userId) => {
     setToken(token);
+    setUserId(userId);
     localStorage.setItem("token", token);
     localStorage.setItem("experationTime", experationTime);
+    localStorage.setItem("userId", userId);
     const remainingTime = calculateTime(experationTime);
 
     logoutTimer = setTimeout(logoutHandler, remainingTime);
@@ -73,6 +81,7 @@ export const AuthContextProvider = (props) => {
   const contextValue = {
     token: token,
     isLoggedIn: userIsLoggedIn,
+    userId: userId,
     login: loginHandler,
     logout: logoutHandler,
   };

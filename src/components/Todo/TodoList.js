@@ -1,24 +1,28 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Card from "../UI/Card";
 import TodoDone from "./TodoDone";
 // import TodoImportant from "./TodoImportant";
 import TodoOngoing from "./TodoOngoing";
 import classes from "./TodoList.module.css";
+import AuthContext from "../../store/auth-context";
 
 function Todo() {
   const [todo, setTodo] = useState("");
+  const authContext = useContext(AuthContext);
+  const userId = authContext.userId;
 
   const todoInputChangeHandler = (event) => {
     setTodo(event.target.value);
   };
 
   const sendHandler = (event) => {
-    console.log(todo);
-
-    fetch("https://todo-app-2fc21-default-rtdb.firebaseio.com/todos.json", {
-      method: "POST",
-      body: JSON.stringify(todo),
-    });
+    fetch(
+      `https://todo-app-2fc21-default-rtdb.firebaseio.com/todos/${userId}.json`,
+      {
+        method: "POST",
+        body: JSON.stringify(todo),
+      }
+    );
 
     setTodo("");
   };
