@@ -1,18 +1,47 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import AuthContext from "../../store/auth-context";
 
 function TodoItem(props) {
-  const [updateStatus, setUpdateStatus] = useState(props.status);
+  const authContext = useContext(AuthContext);
+  const userId = authContext.userId;
+  let status = props.status;
+  const btnMessage = status ? "Delete" : "Complete";
 
   const onStatusChangeHandler = () => {
-    setUpdateStatus((prevStatus) => !prevStatus);
+    status = !status;
+    if (status === true) {
+      fetch(
+        `https://todo-app-2fc21-default-rtdb.firebaseio.com/todos/${userId}/${props.id}.json`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({
+            creationDate: props.creationDate,
+            finishDate: new Date().toLocaleString(),
+            id: props.id,
+            name: props.name,
+            status: status,
+          }),
+        }
+      );
+    }
   };
+
+  const content = status ? (
+    <div>
+      <p>{`Creation Date: ${props.creationDate}`}</p>
+      <p>{`Finnish Date: ${props.finishDate}`}</p>
+    </div>
+  ) : (
+    <p>{`Creation Date: ${props.creationDate}`}</p>
+  );
+
   return (
     <div>
       <div>
         <h3>{props.name}</h3>
-        <p>{`Creation Date: ${props.creationDate}`}</p>
+        {content}
       </div>
-      <button onClick={onStatusChangeHandler}>Complete</button>
+      <button onClick={onStatusChangeHandler}>{btnMessage}</button>
     </div>
   );
 }

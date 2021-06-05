@@ -18,12 +18,14 @@ function TodoOngoing() {
 
       if (responseData) {
         for (const key in responseData) {
-          loadedTodos.push({
-            id: key,
-            name: responseData[key].name,
-            status: responseData[key].status,
-            creationDate: responseData[key].creationDate,
-          });
+          if (responseData[key].status === false) {
+            loadedTodos.push({
+              id: key,
+              name: responseData[key].name,
+              status: responseData[key].status,
+              creationDate: responseData[key].creationDate,
+            });
+          }
         }
 
         setTodo(loadedTodos);
@@ -41,10 +43,8 @@ function TodoOngoing() {
         name={todo.name}
         status={todo.status}
         creationDate={todo.creationDate}
+        finishDate={todo.finishDate}
       />
-      // <li key={todo.id} onClick={doneHandler}>
-      //   {todo.name}
-      // </li>
     );
   });
 
