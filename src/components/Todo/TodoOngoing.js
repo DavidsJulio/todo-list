@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import classes from "./TodoOngoing.module.css";
 import AuthContext from "../../store/auth-context";
+import TodoItem from "./TodoItem";
 
 function TodoOngoing() {
   const authContext = useContext(AuthContext);
-  const [todos, setTodo] = useState([]);
+  const [todo, setTodo] = useState([]);
   const userId = authContext.userId;
 
   const url = `https://todo-app-2fc21-default-rtdb.firebaseio.com/todos/${userId}.json`;
@@ -15,28 +16,35 @@ function TodoOngoing() {
       const responseData = await response.json();
       const loadedTodos = [];
 
-      for (const key in responseData) {
-        loadedTodos.push({
-          id: key,
-          name: responseData[key],
-        });
-      }
+      if (responseData) {
+        for (const key in responseData) {
+          loadedTodos.push({
+            id: key,
+            name: responseData[key].name,
+            status: responseData[key].status,
+            creationDate: responseData[key].creationDate,
+          });
+        }
 
-      setTodo(loadedTodos);
+        setTodo(loadedTodos);
+      }
     };
 
     fetchTodos();
-  }, [todos, url]);
+  }, [todo, url]);
 
-  const doneHandler = () => {
-    console.log("Done!");
-  };
-
-  const todosList = todos.map((todo) => {
+  const todosList = todo.map((todo) => {
     return (
-      <li key={todo.id} onClick={doneHandler}>
-        {todo.name}
-      </li>
+      <TodoItem
+        key={todo.id}
+        id={todo.id}
+        name={todo.name}
+        status={todo.status}
+        creationDate={todo.creationDate}
+      />
+      // <li key={todo.id} onClick={doneHandler}>
+      //   {todo.name}
+      // </li>
     );
   });
 

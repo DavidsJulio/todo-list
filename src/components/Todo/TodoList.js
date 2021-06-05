@@ -7,15 +7,19 @@ import classes from "./TodoList.module.css";
 import AuthContext from "../../store/auth-context";
 
 function Todo() {
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState({});
   const authContext = useContext(AuthContext);
   const userId = authContext.userId;
 
   const todoInputChangeHandler = (event) => {
-    setTodo(event.target.value);
+    setTodo({
+      name: event.target.value,
+      status: false,
+      creationDate: new Date().toLocaleString(),
+    });
   };
 
-  const sendHandler = (event) => {
+  const sendHandler = () => {
     fetch(
       `https://todo-app-2fc21-default-rtdb.firebaseio.com/todos/${userId}.json`,
       {
@@ -31,7 +35,11 @@ function Todo() {
     <Card>
       <div className={classes.container}>
         <div className={classes.add}>
-          <input value={todo} type="text" onChange={todoInputChangeHandler} />
+          <input
+            value={todo.name}
+            type="text"
+            onChange={todoInputChangeHandler}
+          />
           <button onClick={sendHandler}>Add Todo</button>
         </div>
         <div className={classes.grid}>
