@@ -6,23 +6,25 @@ function TodoItem(props) {
   const userId = authContext.userId;
   let status = props.status;
   const btnMessage = status ? "Delete" : "Complete";
+  const url = `https://todo-app-2fc21-default-rtdb.firebaseio.com/todos/${userId}/${props.id}.json`;
 
   const onStatusChangeHandler = () => {
     status = !status;
     if (status === true) {
-      fetch(
-        `https://todo-app-2fc21-default-rtdb.firebaseio.com/todos/${userId}/${props.id}.json`,
-        {
-          method: "PATCH",
-          body: JSON.stringify({
-            creationDate: props.creationDate,
-            finishDate: new Date().toLocaleString(),
-            id: props.id,
-            name: props.name,
-            status: status,
-          }),
-        }
-      );
+      fetch(url, {
+        method: "PATCH",
+        body: JSON.stringify({
+          creationDate: props.creationDate,
+          finishDate: new Date().toLocaleString(),
+          id: props.id,
+          name: props.name,
+          status: status,
+        }),
+      });
+    } else {
+      fetch(url, {
+        method: "DELETE",
+      });
     }
   };
 
