@@ -1,52 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
 import classes from "./TodoOngoing.module.css";
-import AuthContext from "../../store/auth-context";
-import TodoItem from "./TodoItem";
+import useHttp from "../../hooks/use-http";
 
 function TodoOngoing() {
-  const authContext = useContext(AuthContext);
-  const [todo, setTodo] = useState([]);
-  const userId = authContext.userId;
-
-  const url = `https://todo-app-2fc21-default-rtdb.firebaseio.com/todos/${userId}.json`;
-
-  useEffect(() => {
-    const fetchTodos = async () => {
-      const response = await fetch(url);
-      const responseData = await response.json();
-      const loadedTodos = [];
-
-      if (responseData) {
-        for (const key in responseData) {
-          if (responseData[key].status === false) {
-            loadedTodos.push({
-              id: key,
-              name: responseData[key].name,
-              status: responseData[key].status,
-              creationDate: responseData[key].creationDate,
-            });
-          }
-        }
-
-        setTodo(loadedTodos);
-      }
-    };
-
-    fetchTodos();
-  }, [todo, url]);
-
-  const todosList = todo.map((todo) => {
-    return (
-      <TodoItem
-        key={todo.id}
-        id={todo.id}
-        name={todo.name}
-        status={todo.status}
-        creationDate={todo.creationDate}
-        finishDate={todo.finishDate}
-      />
-    );
-  });
+  const todosList = useHttp(false);
 
   return (
     <div className={classes.ongoing}>
