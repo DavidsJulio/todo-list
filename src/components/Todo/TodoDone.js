@@ -5,7 +5,7 @@ function TodoDone() {
   const todosList = useHttp(true);
 
   return (
-    <div className={classes.done}>
+    <div>
       <h3>Done</h3>
       <div className={classes.list}>
         <ul>{todosList}</ul>

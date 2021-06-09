@@ -42,8 +42,12 @@ function Todo() {
           <button onClick={sendHandler}>Add Todo</button>
         </div>
         <div className={classes.grid}>
-          <TodoOngoing />
-          <TodoDone />
+          <div className={classes.box1}>
+            <TodoOngoing />
+          </div>
+          <div className={classes.box2}>
+            <TodoDone />
+          </div>
         </div>
       </div>
     </Card>
