@@ -3,3 +3,26 @@
   min-height: 70vh;
   max-width: 100%;
 }
+
+.list ul {
+  padding: 0;
+}
+
+@media only screen and (max-width: 850px) {
+  .ongoing {
+    border-right: none;
+    border-bottom: 2px solid #606263;
+    min-height: 35vh;
+    min-width: 85vw;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .ongoing {
+    align-items: center;
+    border-right: none;
+    border-bottom: 2px solid #606263;
+    min-height: 35vh;
+    min-width: 65vw;
+  }
+}

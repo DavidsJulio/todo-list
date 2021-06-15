@@ -52,3 +52,15 @@
   background-color: #80a2cf;
   border-color: #80a2cf;
 }
+
+@media only screen and (max-width: 400px) {
+  .btn button {
+    cursor: pointer;
+    font: inherit;
+    color: white;
+    background-color: #95bcf0;
+    border: 1px solid #95bcf0;
+    border-radius: 5px;
+    padding: 0.5rem 1.3rem;
+  }
+}

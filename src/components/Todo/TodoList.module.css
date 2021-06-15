@@ -3,6 +3,7 @@
 }
 
 .add {
+  margin-top: 1rem;
   text-align: center;
 }
 
@@ -34,4 +35,42 @@
   grid-gap: 40px;
   grid-template-columns: 50% 50%;
   margin: 2em 0;
+}
+
+@media only screen and (max-width: 850px) {
+  .grid {
+    display: inline-block;
+  }
+}
+
+@media only screen and (max-width: 462px) {
+  .grid {
+    display: inline-block;
+  }
+
+  .add {
+    display: inline-block;
+
+    width: 80vw;
+  }
+  .add input {
+    font: inherit;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #606263;
+    padding: 0.4rem;
+    font-size: 0.8rem;
+  }
+
+  .add button {
+    cursor: pointer;
+    font: inherit;
+    color: white;
+    font-size: 0.8rem;
+    background-color: #606263;
+    border: 1px solid #606263;
+    border-radius: 5px;
+    padding: 0.5rem 1.5rem;
+    margin-top: 1rem;
+  }
 }

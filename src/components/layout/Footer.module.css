@@ -14,3 +14,26 @@
   width: 30px;
   margin: 10px;
 }
+
+@media only screen and (max-width: 400px) {
+  .footer {
+    padding: 1rem;
+    background-color: #606263;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer p {
+    font-size: 0.8rem;
+  }
+
+  .links {
+    display: flex;
+  }
+
+  .links a {
+    width: 20px;
+    margin: 10px;
+  }
+}

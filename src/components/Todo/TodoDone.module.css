@@ -1,3 +1,14 @@
+.list ul {
+  padding: 0;
+}
+
 .list h1 {
   text-decoration-line: line-through;
+}
+
+@media only screen and (max-width: 850px) {
+  .done {
+    min-height: 30vh;
+    min-width: 65vw;
+  }
 }

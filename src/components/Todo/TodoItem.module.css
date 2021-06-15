@@ -26,11 +26,71 @@
 }
 
 .divButton button:hover {
-  background-color: #80a2cf;
-  border-color: #80a2cf;
+  background-color: #84888a;
+  border-color: #84888a;
 }
 
 .todoDone {
   margin-bottom: 10px;
   font-size: 0.9em;
+}
+
+@media only screen and (max-width: 850px) {
+  .container {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .name h1 {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .todoDone p {
+    font-size: 0.7rem;
+  }
+
+  .divButton button {
+    cursor: pointer;
+    font: inherit;
+    color: white;
+    background-color: #606263;
+    border: 1px solid #606263;
+    border-radius: 5em;
+    padding: 0.5rem 1.5rem;
+    margin-left: 1rem;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .container {
+    display: inline-block;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .name {
+    width: 100%;
+  }
+
+  .name h1 {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .todoDone p {
+    font-size: 0.7rem;
+  }
+
+  .divButton button {
+    cursor: pointer;
+    font: inherit;
+    color: white;
+    background-color: #606263;
+    border: 1px solid #606263;
+    border-radius: 5em;
+    width: 100%;
+  }
 }
